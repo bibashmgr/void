@@ -24,15 +24,14 @@ export default class Resources extends EventEmitter {
     this.loaders = {};
 
     this.loaders.textureLoader = new THREE.TextureLoader();
-    this.loaders.cubeTextureLoader = new THREE.CubeTextureLoader();
     this.loaders.fontLoader = new FontLoader();
   }
 
   startLoading() {
     for (const asset of this.assets) {
-      if (asset.type === 'normalTexture') {
+      if (asset.type === 'texture') {
         this.loaders.textureLoader.load(asset.path, (file) => {
-          file.encoding = THREE.SRGBColorSpace;
+          file.colorSpace = THREE.SRGBColorSpace;
           this.singleAssetLoaded(asset, file);
         });
       } else if (asset.type === 'font') {

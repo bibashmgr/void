@@ -1,12 +1,12 @@
 import * as THREE from 'three';
 
 // src
-import Experience from '../experience.js';
+import Experience from '../Experience.js';
 
 // helpers
 import { random } from '../helpers/randomGenerator.js';
 
-export default class Background {
+export default class Overlay {
   constructor() {
     this.experience = new Experience();
     this.scene = this.experience.scene;
@@ -22,7 +22,7 @@ export default class Background {
         z: [-50, 50],
       },
       shapeCount: 50,
-      rotationSpeed: 0.002,
+      rotationSpeed: 2,
     };
 
     this.group = new THREE.Group();
@@ -150,6 +150,7 @@ export default class Background {
     this.animateShapes(this.octaShapes);
     this.animateShapes(this.icosaShapes);
 
-    this.shapes.rotation.y += this.parameters.rotationSpeed * 0.1;
+    this.shapes.rotation.y =
+      this.time.elapsed * this.parameters.rotationSpeed * 0.00001;
   }
 }

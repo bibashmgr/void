@@ -2,11 +2,11 @@ import * as THREE from 'three';
 import gsap from 'gsap';
 
 // src
-import Experience from '../experience.js';
+import Experience from '../Experience.js';
 
 // scenes
-import Environment from './environment.js';
-import Background from './background.js';
+import Environment from './Environment.js';
+import Overlay from './Overlay.js';
 
 //sections
 import HomeSection from './sections/homeSection.js';
@@ -23,12 +23,12 @@ export default class World {
 
     this.resources.on('ready', () => {
       this.environment = new Environment();
-      this.background = new Background();
+      this.overlay = new Overlay();
 
       // this.homeSection = new HomeSection();
       // this.workSection = new WorkSection();
 
-      this.group.add(this.background.group);
+      this.group.add(this.overlay.group);
       // this.group.add(this.homeSection.group);
       // this.group.add(this.workSection.group);
     });
@@ -39,8 +39,8 @@ export default class World {
   resize() {}
 
   update() {
-    if (this.background) {
-      this.background.update();
+    if (this.overlay) {
+      this.overlay.update();
       // this.workSection.update();
       // this.homeSection.update();
     }

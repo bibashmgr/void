@@ -1,20 +1,20 @@
 import * as THREE from 'three';
 
 // src
-import Camera from './camera.js';
-import Renderer from './renderer.js';
+import Camera from './Camera.js';
+import Renderer from './Renderer.js';
 
 // utils
-import Sizes from './utils/sizes.js';
-import Time from './utils/time.js';
-import Mouse from './utils/mouse.js';
-import Resources from './utils/resources.js';
+import Sizes from './utils/Sizes.js';
+import Time from './utils/Time.js';
+import Mouse from './utils/Mouse.js';
+import Resources from './utils/Resources.js';
 
 // world
-import World from './scenes/world.js';
+import World from './scenes/World.js';
 
-// config
-import assets from './config/assets.js';
+// constants
+import assets from './constants/assets.js';
 
 export default class Experience {
   static instance;
@@ -26,10 +26,10 @@ export default class Experience {
 
     Experience.instance = this;
     this.canvas = canvas;
-    this.scene = new THREE.Scene();
     this.sizes = new Sizes();
     this.time = new Time();
     this.mouse = new Mouse();
+    this.scene = new THREE.Scene();
     this.camera = new Camera();
     this.renderer = new Renderer();
     this.resources = new Resources(assets);

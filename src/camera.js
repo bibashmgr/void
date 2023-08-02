@@ -3,7 +3,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import gsap from 'gsap';
 
 // src
-import Experience from './experience.js';
+import Experience from './Experience.js';
 
 export default class Camera {
   constructor() {

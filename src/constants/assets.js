@@ -5,7 +5,7 @@ const assets = [
     path: '/fonts/dmSerif_regular.json',
   },
   {
-    type: 'normalTexture',
+    type: 'texture',
     name: 'cover',
     path: '/images/cover.jpg',
   },
