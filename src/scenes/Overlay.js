@@ -14,15 +14,18 @@ export default class Overlay {
     this.mouse = this.experience.mouse;
 
     this.parameters = {
+      materialColor: '#ffffff',
       particleSize: 0.5,
-      particleCount: 1000,
+      particlesCount: 1000,
       range: {
-        x: [-50, 50],
-        y: [-150, 30],
-        z: [-50, 50],
+        x: [-40, 40],
+        y: [-160, 40],
+        z: [-40, 40],
       },
-      shapeCount: 50,
-      rotationSpeed: 2,
+      shapeSize: [2, 2.5],
+      shapesCount: 50,
+      shapeSpeed: 0.2,
+      shapesSpeed: 1,
     };
 
     this.group = new THREE.Group();
@@ -38,22 +41,30 @@ export default class Overlay {
     const particleGeometry = new THREE.BufferGeometry();
     const particleMaterial = new THREE.PointsMaterial({
       size: this.parameters.particleSize,
+      sizeAttenuation: true,
+      color: this.parameters.materialColor,
     });
 
-    let vertices = [];
+    let postions = new Float32Array(this.parameters.particlesCount * 3);
 
-    for (let i = 0; i < this.parameters.particleCount; i++) {
-      let vertex = new THREE.Vector3();
-      vertex.x = random(this.parameters.range.x[0], this.parameters.range.x[1]);
-      vertex.y = random(this.parameters.range.y[0], this.parameters.range.y[1]);
-      vertex.z = random(this.parameters.range.z[0], this.parameters.range.z[1]);
-
-      vertices.push(vertex.x, vertex.y, vertex.z);
+    for (let i = 0; i < this.parameters.particlesCount * 3; i++) {
+      postions[i * 3 + 0] = random(
+        this.parameters.range.x[0],
+        this.parameters.range.x[1]
+      );
+      postions[i * 3 + 1] = random(
+        this.parameters.range.y[0],
+        this.parameters.range.y[1]
+      );
+      postions[i * 3 + 2] = random(
+        this.parameters.range.z[0],
+        this.parameters.range.z[1]
+      );
     }
 
     particleGeometry.setAttribute(
       'position',
-      new THREE.Float32BufferAttribute(vertices, 3)
+      new THREE.Float32BufferAttribute(postions, 3)
     );
 
     this.particles = new THREE.Points(particleGeometry, particleMaterial);
@@ -64,6 +75,7 @@ export default class Overlay {
   setShapes() {
     let shapeMaterial = new THREE.MeshBasicMaterial({
       wireframe: true,
+      color: this.parameters.materialColor,
     });
 
     let cubeGeometry = new THREE.BoxGeometry();
@@ -73,17 +85,17 @@ export default class Overlay {
     this.cubeShapes = this.generateShape(
       cubeGeometry,
       shapeMaterial,
-      this.parameters.shapeCount
+      this.parameters.shapesCount
     );
     this.octaShapes = this.generateShape(
       octaGeometry,
       shapeMaterial,
-      this.parameters.shapeCount
+      this.parameters.shapesCount
     );
     this.icosaShapes = this.generateShape(
       icosaGeometry,
       shapeMaterial,
-      this.parameters.shapeCount
+      this.parameters.shapesCount
     );
   }
 
@@ -112,7 +124,7 @@ export default class Overlay {
       shapeMesh.scale.x =
         shapeMesh.scale.y =
         shapeMesh.scale.z =
-          random(2, 2.5);
+          random(this.parameters.shapeSize[0], this.parameters.shapeSize[1]);
 
       shapeMesh.updateMatrix();
 
@@ -128,18 +140,21 @@ export default class Overlay {
     let matrix = new THREE.Matrix4();
     let shapeMesh = new THREE.Object3D();
 
-    for (let i = 0; i < this.parameters.cubesCount; i++) {
+    for (let i = 0; i < this.parameters.shapesCount; i++) {
       shapesMesh.getMatrixAt(i, matrix);
 
       matrix.decompose(shapeMesh.position, shapeMesh.rotation, shapeMesh.scale);
 
-      shapeMesh.rotation.x += this.parameters.rotationSpeed;
-      shapeMesh.rotation.y += this.parameters.rotationSpeed;
-      shapeMesh.rotation.z += this.parameters.rotationSpeed;
+      shapeMesh.rotation.x +=
+        this.time.delta * this.parameters.shapeSpeed * 0.0001;
+      shapeMesh.rotation.y +=
+        this.time.delta * this.parameters.shapeSpeed * 0.0001;
+      shapeMesh.rotation.z +=
+        this.time.delta * this.parameters.shapeSpeed * 0.0001;
 
       shapeMesh.updateMatrix();
 
-      this.shapesMesh.setMatrixAt(i, shapeMesh.matrix);
+      shapesMesh.setMatrixAt(i, shapeMesh.matrix);
     }
 
     shapesMesh.instanceMatrix.needsUpdate = true;
@@ -150,7 +165,7 @@ export default class Overlay {
     this.animateShapes(this.octaShapes);
     this.animateShapes(this.icosaShapes);
 
-    this.shapes.rotation.y =
-      this.time.elapsed * this.parameters.rotationSpeed * 0.00001;
+    this.shapes.rotation.y +=
+      this.time.delta * this.parameters.shapesSpeed * 0.00001;
   }
 }

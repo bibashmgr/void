@@ -3,7 +3,7 @@ import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
 import { EventEmitter } from 'events';
 
 // src
-import Experience from '../experience.js';
+import Experience from '../Experience.js';
 
 export default class Resources extends EventEmitter {
   constructor(assets) {

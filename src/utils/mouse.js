@@ -1,19 +1,28 @@
 import { EventEmitter } from 'events';
+import gsap from 'gsap';
+
+import Experience from '../Experience';
 
 export default class Mouse extends EventEmitter {
   constructor() {
     super();
 
-    window.addEventListener('wheel', (e) => {
-      this.scrollStrength = e.deltaY;
-      this.scrollDirection = 'down';
+    this.experience = new Experience();
+    this.sizes = this.experience.sizes;
 
-      if (Math.sign(this.scrollStrength) === -1) {
-        this.scrollStrength *= -1;
-        this.scrollDirection = 'up';
-      }
+    this.scrollY = -window.scrollY;
+    this.position = {
+      x: 0,
+      y: 0,
+    };
 
-      this.emit('wheel');
+    window.addEventListener('scroll', () => {
+      this.scrollY = -window.scrollY;
+    });
+
+    window.addEventListener('mousemove', (event) => {
+      this.position.x = event.clientX / this.sizes.width;
+      this.position.y = -event.clientY / this.sizes.height;
     });
   }
 }

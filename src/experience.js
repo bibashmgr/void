@@ -42,9 +42,6 @@ export default class Experience {
     this.time.on('update', () => {
       this.update();
     });
-    this.mouse.on('wheel', () => {
-      this.wheel();
-    });
   }
 
   resize() {
@@ -57,9 +54,5 @@ export default class Experience {
     this.camera.update();
     this.renderer.update();
     this.world.update();
-  }
-
-  wheel() {
-    // this.camera.wheel();
   }
 }

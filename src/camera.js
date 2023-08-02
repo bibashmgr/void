@@ -10,11 +10,13 @@ export default class Camera {
     this.experience = new Experience();
     this.sizes = this.experience.sizes;
     this.mouse = this.experience.mouse;
-    this.scene = this.experience.scene;
     this.canvas = this.experience.canvas;
+    this.scene = this.experience.scene;
+
+    this.group = new THREE.Group();
+    this.scene.add(this.group);
 
     this.createPerspectiveCamera();
-    // this.setOrbitControls();
   }
 
   createPerspectiveCamera() {
@@ -26,16 +28,7 @@ export default class Camera {
     );
     this.perspectiveCamera.position.z = 50;
 
-    this.scene.add(this.perspectiveCamera);
-  }
-
-  setOrbitControls() {
-    this.orbitControls = new OrbitControls(this.perspectiveCamera, this.canvas);
-    this.orbitControls.enableDamping = true;
-    this.orbitControls.enableZoom = true;
-    this.orbitControls.enablePan = true;
-    this.orbitControls.maxPolarAngle = Math.PI;
-    this.orbitControls.target.set(0, 0, 0);
+    this.group.add(this.perspectiveCamera);
   }
 
   resize() {
@@ -44,23 +37,12 @@ export default class Camera {
   }
 
   update() {
-    // this.orbitControls.update();
-  }
-
-  wheel() {
-    this.currentPosY = this.perspectiveCamera.position.y;
-    if (this.mouse.scrollDirection === 'up') {
-      this.currentPosY += 40;
-    }
-
-    if (this.mouse.scrollDirection === 'down') {
-      this.currentPosY -= 40;
-    }
-
     gsap.to(this.perspectiveCamera.position, {
-      y: this.currentPosY,
+      y: (this.mouse.scrollY / this.sizes.height) * 10,
       duration: 1,
     });
-    console.log(this.currentPosY);
+
+    this.group.position.x = this.mouse.position.x * 0.5;
+    this.group.position.y = this.mouse.position.y * 0.5;
   }
 }

@@ -8,6 +8,10 @@
     display: none;
 }
 
+body {
+    background-color: #000000;
+}
+
 #experience{
     position: fixed;
     width: 100vw;
@@ -35,8 +39,10 @@
 
 .title {
     font-size: 2rem;
+    font-weight: 700;
 }
 
 .subtitle {
     font-size: 1rem;
+    font-weight: 500;
 }
