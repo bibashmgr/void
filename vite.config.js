@@ -7,4 +7,7 @@ export default defineConfig({
       include: '**/**/*.glsl',
     }),
   ],
+  build: {
+    chunkSizeWarningLimit: 1600,
+  },
 });
