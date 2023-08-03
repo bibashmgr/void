@@ -49,11 +49,10 @@ export default class Mouse extends EventEmitter {
     });
   }
 
-  disableScroll() {
-    document.body.style.overflow = 'hidden';
-  }
-
-  enableScroll() {
-    document.body.style.overflow = 'auto';
+  resize() {
+    this.scrollPosition.y = 0;
+    gsap.to('#app', {
+      y: -this.scrollPosition.y,
+    });
   }
 }
