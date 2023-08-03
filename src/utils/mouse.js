@@ -20,9 +20,26 @@ export default class Mouse extends EventEmitter {
       y: 0,
     };
 
-    window.addEventListener('scroll', () => {
-      if (!this.isScrolling) {
-        this.scrollPosition.y = window.scrollY;
+    window.addEventListener('wheel', (event) => {
+      let scrollY = this.scrollPosition.y;
+      if (!gsap.isTweening('#app')) {
+        if (event.deltaY > 0) {
+          scrollY += this.sizes.height;
+          if (this.scrollPosition.y < 4 * this.sizes.height) {
+            this.scrollPosition.y = scrollY;
+            gsap.to('#app', {
+              y: -this.scrollPosition.y,
+            });
+          }
+        } else {
+          scrollY -= this.sizes.height;
+          if (this.scrollPosition.y > 0) {
+            this.scrollPosition.y = scrollY;
+            gsap.to('#app', {
+              y: -this.scrollPosition.y,
+            });
+          }
+        }
       }
     });
 

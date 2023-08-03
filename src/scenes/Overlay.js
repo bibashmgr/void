@@ -18,12 +18,12 @@ export default class Overlay {
       particleSize: 0.5,
       particlesCount: 1000,
       range: {
-        x: [-40, 40],
-        y: [-160, 40],
-        z: [-40, 40],
+        x: [-30, 30],
+        y: [-150, 30],
+        z: [-30, 30],
       },
       shapeSize: [2, 2.5],
-      shapesCount: 50,
+      shapesCount: 45,
       shapeSpeed: 2,
       shapesSpeed: 1.5,
     };

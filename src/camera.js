@@ -39,7 +39,7 @@ export default class Camera {
 
   update() {
     gsap.to(this.perspectiveCamera.position, {
-      y: -(this.mouse.scrollPosition.y / this.sizes.height) * 10,
+      y: -(this.mouse.scrollPosition.y / this.sizes.height) * 30,
       duration: 1,
     });
 
