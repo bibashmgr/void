@@ -10,7 +10,7 @@ export default class Environment {
 
     this.parameters = {
       fogColor: '#2b2b2b',
-      fogIntensity: 0.005,
+      fogIntensity: 1,
       lightColor: '#ffffff',
       lightIntensity: 3.5,
     };
@@ -22,7 +22,7 @@ export default class Environment {
   setFog() {
     this.fog = new THREE.FogExp2(
       this.parameters.fogColor,
-      this.parameters.fogIntensity
+      this.parameters.fogIntensity * 0.01
     );
     this.scene.fog = this.fog;
   }

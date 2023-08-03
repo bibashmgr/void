@@ -24,8 +24,8 @@ export default class Overlay {
       },
       shapeSize: [2, 2.5],
       shapesCount: 50,
-      shapeSpeed: 0.2,
-      shapesSpeed: 1,
+      shapeSpeed: 2,
+      shapesSpeed: 1.5,
     };
 
     this.group = new THREE.Group();
@@ -146,11 +146,11 @@ export default class Overlay {
       matrix.decompose(shapeMesh.position, shapeMesh.rotation, shapeMesh.scale);
 
       shapeMesh.rotation.x +=
-        this.time.delta * this.parameters.shapeSpeed * 0.0001;
+        this.time.delta * this.parameters.shapeSpeed * 0.00001;
       shapeMesh.rotation.y +=
-        this.time.delta * this.parameters.shapeSpeed * 0.0001;
+        this.time.delta * this.parameters.shapeSpeed * 0.00001;
       shapeMesh.rotation.z +=
-        this.time.delta * this.parameters.shapeSpeed * 0.0001;
+        this.time.delta * this.parameters.shapeSpeed * 0.00001;
 
       shapeMesh.updateMatrix();
 

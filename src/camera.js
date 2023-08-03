@@ -9,6 +9,7 @@ export default class Camera {
   constructor() {
     this.experience = new Experience();
     this.sizes = this.experience.sizes;
+    this.time = this.experience.time;
     this.mouse = this.experience.mouse;
     this.canvas = this.experience.canvas;
     this.scene = this.experience.scene;
@@ -38,11 +39,17 @@ export default class Camera {
 
   update() {
     gsap.to(this.perspectiveCamera.position, {
-      y: (this.mouse.scrollY / this.sizes.height) * 10,
+      y: -(this.mouse.scrollPosition.y / this.sizes.height) * 10,
       duration: 1,
     });
 
-    this.group.position.x = this.mouse.position.x * 0.5;
-    this.group.position.y = this.mouse.position.y * 0.5;
+    this.group.position.x +=
+      (this.mouse.cursorPosition.x - this.group.position.x) *
+      0.008 *
+      this.time.delta;
+    this.group.position.y +=
+      (this.mouse.cursorPosition.y - this.group.position.y) *
+      0.008 *
+      this.time.delta;
   }
 }
