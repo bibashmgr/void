@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
 import { EventEmitter } from 'events';
 
 // src
@@ -24,7 +23,6 @@ export default class Resources extends EventEmitter {
     this.loaders = {};
 
     this.loaders.textureLoader = new THREE.TextureLoader();
-    this.loaders.fontLoader = new FontLoader();
   }
 
   startLoading() {
@@ -32,10 +30,6 @@ export default class Resources extends EventEmitter {
       if (asset.type === 'texture') {
         this.loaders.textureLoader.load(asset.path, (file) => {
           file.colorSpace = THREE.SRGBColorSpace;
-          this.singleAssetLoaded(asset, file);
-        });
-      } else if (asset.type === 'font') {
-        this.loaders.fontLoader.load(asset.path, (file) => {
           this.singleAssetLoaded(asset, file);
         });
       }
