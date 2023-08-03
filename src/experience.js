@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 
-// src
 import Camera from './Camera.js';
 import Renderer from './Renderer.js';
 
@@ -11,7 +10,7 @@ import Mouse from './utils/Mouse.js';
 import Debug from './utils/Debug.js';
 import Resources from './utils/Resources.js';
 
-// world
+// scenes
 import World from './scenes/World.js';
 
 // constants
@@ -49,7 +48,6 @@ export default class Experience {
   resize() {
     this.camera.resize();
     this.renderer.resize();
-    this.mouse.resize();
     this.world.resize();
   }
 

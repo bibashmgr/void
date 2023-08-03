@@ -1,5 +1,4 @@
 import { EventEmitter } from 'events';
-import gsap from 'gsap';
 
 import Experience from '../Experience';
 
@@ -10,49 +9,23 @@ export default class Mouse extends EventEmitter {
     this.experience = new Experience();
     this.sizes = this.experience.sizes;
 
-    this.isScrolling = false;
     this.scrollPosition = {
       x: 0,
-      y: 0,
+      y: window.scrollY,
     };
     this.cursorPosition = {
       x: 0,
       y: 0,
     };
 
-    window.addEventListener('wheel', (event) => {
-      let scrollY = this.scrollPosition.y;
-      if (!gsap.isTweening('#app')) {
-        if (event.deltaY > 0) {
-          scrollY += this.sizes.height;
-          if (this.scrollPosition.y < 4 * this.sizes.height) {
-            this.scrollPosition.y = scrollY;
-            gsap.to('#app', {
-              y: -this.scrollPosition.y,
-            });
-          }
-        } else {
-          scrollY -= this.sizes.height;
-          if (this.scrollPosition.y > 0) {
-            this.scrollPosition.y = scrollY;
-            gsap.to('#app', {
-              y: -this.scrollPosition.y,
-            });
-          }
-        }
-      }
+    window.addEventListener('scroll', (event) => {
+      this.scrollPosition.y = window.scrollY;
+      console.log(this.scrollPosition.y);
     });
 
     window.addEventListener('mousemove', (event) => {
-      this.cursorPosition.x = event.clientX / this.sizes.width;
-      this.cursorPosition.y = -event.clientY / this.sizes.height;
-    });
-  }
-
-  resize() {
-    this.scrollPosition.y = 0;
-    gsap.to('#app', {
-      y: -this.scrollPosition.y,
+      this.cursorPosition.x = (event.clientX / this.sizes.width) * 2 - 1;
+      this.cursorPosition.y = (-event.clientY / this.sizes.height) * 2 + 1;
     });
   }
 }

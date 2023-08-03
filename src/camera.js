@@ -1,8 +1,6 @@
 import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import gsap from 'gsap';
 
-// src
 import Experience from './Experience.js';
 
 export default class Camera {
@@ -16,6 +14,7 @@ export default class Camera {
 
     this.group = new THREE.Group();
     this.scene.add(this.group);
+    this.group.position.y = 0;
 
     this.createPerspectiveCamera();
   }
@@ -27,6 +26,7 @@ export default class Camera {
       1,
       4000
     );
+    this.perspectiveCamera.position.x = 0;
     this.perspectiveCamera.position.z = 50;
 
     this.group.add(this.perspectiveCamera);
@@ -45,11 +45,11 @@ export default class Camera {
 
     this.group.position.x +=
       (this.mouse.cursorPosition.x - this.group.position.x) *
-      0.008 *
-      this.time.delta;
+      this.time.delta *
+      0.01;
     this.group.position.y +=
       (this.mouse.cursorPosition.y - this.group.position.y) *
-      0.008 *
-      this.time.delta;
+      this.time.delta *
+      0.01;
   }
 }

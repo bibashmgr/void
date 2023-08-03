@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 
-// src
 import Experience from '../Experience';
 
 export default class Environment {

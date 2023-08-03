@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 
-// src
 import Experience from '../Experience.js';
 
 // helpers
@@ -9,9 +8,9 @@ import { random } from '../helpers/randomGenerator.js';
 export default class Overlay {
   constructor() {
     this.experience = new Experience();
-    this.scene = this.experience.scene;
     this.time = this.experience.time;
     this.mouse = this.experience.mouse;
+    this.scene = this.experience.scene;
 
     this.parameters = {
       materialColor: '#ffffff',
@@ -23,7 +22,7 @@ export default class Overlay {
         z: [-30, 30],
       },
       shapeSize: [2, 2.5],
-      shapesCount: 45,
+      shapesCount: 30,
       shapeSpeed: 2,
       shapesSpeed: 1.5,
     };
