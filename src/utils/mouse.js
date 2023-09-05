@@ -1,4 +1,5 @@
 import { EventEmitter } from 'events';
+import gsap from 'gsap';
 
 import Experience from '../Experience';
 
@@ -20,7 +21,6 @@ export default class Mouse extends EventEmitter {
 
     window.addEventListener('scroll', (event) => {
       this.scrollPosition.y = window.scrollY;
-      console.log(this.scrollPosition.y);
     });
 
     window.addEventListener('mousemove', (event) => {

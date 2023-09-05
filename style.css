@@ -10,7 +10,7 @@
 
 body {
     background-color: #000000;
-    
+    /* overflow: hidden; */
 }
 
 #experience{
@@ -46,4 +46,14 @@ body {
 .subtitle {
     font-size: 1rem;
     font-weight: 500;
+}
+
+@media screen and (max-width: 576px) {
+    .title {
+        font-size: 1.75rem;
+    }
+    
+    .subtitle {
+        font-size: 0.75rem;
+    }
 }
