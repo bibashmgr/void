@@ -1,7 +1,7 @@
-import * as THREE from 'three';
-import gsap from 'gsap';
+import * as THREE from "three";
+import gsap from "gsap";
 
-import Experience from './Experience.js';
+import Experience from "./experience.js";
 
 export default class Camera {
   constructor() {
@@ -24,7 +24,7 @@ export default class Camera {
       20,
       this.sizes.aspect,
       1,
-      4000
+      4000,
     );
     this.perspectiveCamera.position.x = 0;
     this.perspectiveCamera.position.z = 50;

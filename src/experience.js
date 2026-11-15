@@ -1,20 +1,20 @@
-import * as THREE from 'three';
+import * as THREE from "three";
 
-import Camera from './Camera.js';
-import Renderer from './Renderer.js';
+import Camera from "./camera.js";
+import Renderer from "./renderer.js";
 
 // utils
-import Sizes from './utils/Sizes.js';
-import Time from './utils/Time.js';
-import Mouse from './utils/Mouse.js';
-import Debug from './utils/Debug.js';
-import Resources from './utils/Resources.js';
+import Sizes from "./utils/sizes.js";
+import Time from "./utils/time.js";
+import Mouse from "./utils/mouse.js";
+import Debug from "./utils/debug.js";
+import Resources from "./utils/resources.js";
 
 // scenes
-import World from './scenes/World.js';
+import World from "./scenes/world.js";
 
 // constants
-import assets from './constants/assets.js';
+import assets from "./constants/assets.js";
 
 export default class Experience {
   static instance;
@@ -37,10 +37,10 @@ export default class Experience {
 
     this.world = new World();
 
-    this.sizes.on('resize', () => {
+    this.sizes.on("resize", () => {
       this.resize();
     });
-    this.time.on('update', () => {
+    this.time.on("update", () => {
       this.update();
     });
   }

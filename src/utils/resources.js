@@ -1,7 +1,7 @@
-import * as THREE from 'three';
-import { EventEmitter } from 'events';
+import * as THREE from "three";
+import { EventEmitter } from "events";
 
-import Experience from '../Experience.js';
+import Experience from "../experience.js";
 
 export default class Resources extends EventEmitter {
   constructor(assets) {
@@ -26,7 +26,7 @@ export default class Resources extends EventEmitter {
 
   startLoading() {
     for (const asset of this.assets) {
-      if (asset.type === 'texture') {
+      if (asset.type === "texture") {
         this.loaders.textureLoader.load(asset.path, (file) => {
           file.colorSpace = THREE.SRGBColorSpace;
           this.singleAssetLoaded(asset, file);
@@ -40,7 +40,7 @@ export default class Resources extends EventEmitter {
     this.loaded++;
 
     if (this.loaded === this.queue) {
-      this.emit('ready');
+      this.emit("ready");
     }
   }
 }

@@ -1,6 +1,6 @@
-import * as THREE from 'three';
+import * as THREE from "three";
 
-import Experience from '../Experience';
+import Experience from "../experience.js";
 
 export default class Environment {
   constructor() {
@@ -8,9 +8,9 @@ export default class Environment {
     this.scene = this.experience.scene;
 
     this.parameters = {
-      fogColor: '#2b2b2b',
+      fogColor: "#2b2b2b",
       fogIntensity: 1,
-      lightColor: '#ffffff',
+      lightColor: "#ffffff",
       lightIntensity: 3.5,
     };
 
@@ -21,7 +21,7 @@ export default class Environment {
   setFog() {
     this.fog = new THREE.FogExp2(
       this.parameters.fogColor,
-      this.parameters.fogIntensity * 0.01
+      this.parameters.fogIntensity * 0.01,
     );
     this.scene.fog = this.fog;
   }
@@ -29,7 +29,7 @@ export default class Environment {
   setLight() {
     this.light = new THREE.DirectionalLight(
       this.parameters.lightColor,
-      this.parameters.lightIntensity
+      this.parameters.lightIntensity,
     );
     this.light.position.set(0, 1, 2);
     this.scene.add(this.light);

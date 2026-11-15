@@ -1,10 +1,10 @@
-import * as THREE from 'three';
+import * as THREE from "three";
 
-import Experience from '../Experience.js';
+import Experience from "../experience.js";
 
 // scenes
-import Environment from './Environment.js';
-import Overlay from './Overlay.js';
+import Environment from "./environment.js";
+import Overlay from "./overlay.js";
 
 export default class World {
   constructor() {
@@ -15,7 +15,7 @@ export default class World {
 
     this.group = new THREE.Group();
 
-    this.resources.on('ready', () => {
+    this.resources.on("ready", () => {
       this.environment = new Environment();
 
       this.overlay = new Overlay();
