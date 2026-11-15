@@ -9,6 +9,7 @@ import Time from "./utils/time.js";
 import Mouse from "./utils/mouse.js";
 import Debug from "./utils/debug.js";
 import Resources from "./utils/resources.js";
+import Loading from "./utils/loading.js";
 
 // scenes
 import World from "./scenes/world.js";
@@ -34,6 +35,7 @@ export default class Experience {
     this.camera = new Camera();
     this.renderer = new Renderer();
     this.resources = new Resources(assets);
+    this.loading = new Loading();
 
     this.world = new World();
 
