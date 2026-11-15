@@ -19,7 +19,6 @@ export function renderProjects(container, projects, limit = 3) {
           <span>${project.role}</span>
         </p>
         <span class="project-arrow" aria-hidden="true">↗</span>
-        <img class="project-thumb" src="${project.image}" alt="${project.title} preview" loading="lazy" />
         <div class="project-details">
           <div class="project-details-inner">
             <p class="project-description">${project.description}</p>

@@ -343,15 +343,6 @@ body.is-loading {
     border-bottom: 1px solid currentColor;
 }
 
-.project-thumb {
-    display: none;
-    grid-area: thumb;
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    object-fit: cover;
-    border: 1px solid var(--color-line);
-}
-
 @media (hover: hover) and (pointer: fine) {
     .project:hover .project-title {
         transform: translateX(1rem);
@@ -372,7 +363,6 @@ body.is-loading {
         grid-template-areas:
             "index main    arrow"
             ".     meta    meta"
-            ".     thumb   thumb"
             ".     details details";
         column-gap: 1rem;
         padding: 1.75rem 0;
@@ -391,10 +381,6 @@ body.is-loading {
 
     .project-arrow {
         align-self: start;
-    }
-
-    .project-thumb {
-        display: block;
     }
 
     .project-details {
